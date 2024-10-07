@@ -9,6 +9,9 @@ function ProductList() {
     const [addedToCart, setAddedToCart] = useState({});
     const dispatch = useDispatch();
     const cart = useSelector(state => state.cart.items);
+    const itemAdded = (item) => {
+        return cart.find(plant => plant.name === item.name);
+    }
     const totalCartNum = () => {
         let total =0;
         cart.forEach((item) => {
@@ -294,7 +297,8 @@ const handleAddToCart = (product) => {
                             <div className='product-card' key={plantIndex}>
                                 <img className="product-image" src={plant.image} alt={plant.name} />
                                 <div className="product-tile">{plant.name}</div>
-                                <button className="product-button" onClick={()=> handleAddToCart(plant)}>Add to Cart</button>
+                                {itemAdded(plant) ? (<button className="product-button.added-to-cart">Added to Cart</button>):(<button className="product-button" onClick={()=> handleAddToCart(plant)}>Add to Cart</button>)}
+                                
                             </div>
                         ))}
                     </div>
