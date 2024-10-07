@@ -12,7 +12,7 @@ function ProductList() {
     const totalCartNum = () => {
         let total =0;
         cart.forEach((item) => {
-          total += 1;
+          total += item.quantity;
         });
         return total; 
     }
